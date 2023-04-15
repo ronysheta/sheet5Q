@@ -1,0 +1,79 @@
+package com.mycompany.ezzassignment;
+import java.time.LocalDate;
+import static java.time.LocalDate.now;
+public class Account {
+  private int id;
+  private double balance;
+  private double annualInterestRate;
+  private LocalDate dateCreated;   
+  
+  Account(){
+  this.id=0;
+  this.balance=0;
+  this.annualInterestRate=0;
+  this.dateCreated= now();
+  } 
+  Account (int id,double balance){
+  this.id=id;
+  this.balance=balance;
+  }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+
+    public void setAnnualInterestRate(double annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
+    }
+
+    public LocalDate getDateCreated() {
+        return dateCreated;
+    }
+    
+    public double getMonthlyInterestRate(){
+        double rate=this.getAnnualInterestRate()/12;
+        return rate ;
+    }
+    
+    public double getMonthlyInterest(){
+        double monthlyInterest= this.getBalance()*((this.getAnnualInterestRate()/100)/12) ;
+        return monthlyInterest;
+    }
+    
+    public void withDraw(double amount){
+        if(balance<amount){
+            System.out.println("Insufficient Blance");
+        }
+        else{
+            this.balance= this.balance - amount;
+            System.out.println(amount+ " withdrawn\nyour balance now = "+this.balance);
+        }
+    }
+    
+    public void deposet(double amount){
+        this.balance=this.balance + amount;
+        System.out.println(amount+" deposited\nyour balance now = "+this.balance);
+    }
+
+    public String toString() {
+        return "Account{" + "id=" + id + ", balance=" + balance + ", annualInterestRate=" + annualInterestRate + ", dateCreated=" + dateCreated + '}';
+    }
+    
+    
+}
